@@ -1,0 +1,21 @@
+.card {
+  background: #fff;
+  border: 1px solid #eee;
+  border-radius: 18px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.06);
+  overflow: hidden;
+}
+
+.header {
+  padding: 14px 16px;
+  border-bottom: 1px solid #f1f1f1;
+  font-weight: 700;
+}
+
+.body { padding: 16px; }
+
+.footer {
+  padding: 14px 16px;
+  border-top: 1px solid #f1f1f1;
+  background: #fafafa;
+}

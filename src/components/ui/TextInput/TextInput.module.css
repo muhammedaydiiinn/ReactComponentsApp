@@ -1,0 +1,16 @@
+.wrap { display: grid; gap: 6px; }
+.label { font-weight: 700; font-size: 13px; }
+
+.inputRow { position: relative; display: flex; align-items: center; }
+.input {
+  width: 100%;
+  padding: 12px 12px;
+  border-radius: 14px;
+  border: 1px solid #e6e6e6;
+  outline: none;
+}
+.input:focus { border-color: #111; }
+
+.rightSlot { position: absolute; right: 10px; display: flex; align-items: center; }
+.error { color: #c1121f; font-size: 12px; }
+.errorInput { border-color: #c1121f; }
