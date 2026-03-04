@@ -1,16 +1,111 @@
-# React + Vite
+## React Component App
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Bu proje React + Vite ile kurulmuş bir **tasarım/animasyon playground** uygulamasıdır.  
+Hedef: tekrar kullanılabilir **UI component kütüphanesi** (Button, Card, TextInput, Select, Checkbox vb.) ve bu componentlerle **dinamik ekranlar** (örn. Login) geliştirmek.
 
-Currently, two official plugins are available:
+## Kurulum
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) (or [oxc](https://oxc.rs) when used in [rolldown-vite](https://vite.dev/guide/rolldown)) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+```bash
+npm install
+npm run dev
+````
 
-## React Compiler
+Build almak için:
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+```bash
+npm run build
+npm run preview
+```
 
-## Expanding the ESLint configuration
+## Kullanılanlar
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+* **React + Vite** (HMR / hızlı geliştirme)
+* **Bootstrap** (hızlı layout ve grid)
+* (Opsiyonel) **Framer Motion** (animasyonlar)
+
+Bootstrap ekli değilse:
+
+```bash
+npm i bootstrap
+```
+
+`src/main.jsx` içinde:
+
+```js
+import "bootstrap/dist/css/bootstrap.min.css";
+```
+
+Framer Motion (opsiyonel):
+
+```bash
+npm i framer-motion
+```
+
+## Proje Yapısı (öneri)
+
+```
+src/
+  components/
+    ui/               # tekrar kullanılabilir UI kit
+      Button/
+      Card/
+      TextInput/
+      Select/
+      Checkbox/
+      index.js        # tek yerden export
+    auth/             # auth ile ilgili componentler
+      LoginForm/
+        LoginForm.jsx
+  screens/            # sayfa/screen componentleri
+    LoginScreen.jsx
+  index.css
+  main.jsx
+  App.jsx
+```
+
+## UI Kit Kullanımı
+
+UI componentlerini tek yerden import edebilirsin:
+
+```jsx
+import { Button, Card, TextInput, Select, Checkbox } from "./components/ui";
+```
+
+## Dinamik Form Mantığı (LoginForm)
+
+`LoginForm` componenti `fields` array’inden inputları dinamik üretir:
+
+* `type: "text" | "email" | "password" | "checkbox" | "select"`
+* `required`, `minLength`, `pattern`, `patternMessage`
+* `inputProps`: ilgili input elementine ek props
+* `wrapperClassName`: alan bazlı layout/stil
+
+Örnek:
+
+```jsx
+const fields = [
+  { name: "username", label: "Username", type: "text", required: true, inputProps: { autoComplete: "username" } },
+  { name: "email", label: "E-mail", type: "email", required: true, pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/ },
+  { name: "password", label: "Password", type: "password", required: true, minLength: 6 },
+  { name: "rememberMe", label: "Remember me", type: "checkbox" },
+  { name: "gender", label: "Gender", type: "select", options: [
+      { value: "", label: "Select gender" },
+      { value: "male", label: "Male" },
+      { value: "female", label: "Female" },
+      { value: "other", label: "Other" },
+    ]
+  },
+];
+```
+
+## Scriptler
+
+* `npm run dev` → geliştirme
+* `npm run build` → production build
+* `npm run preview` → build’i localde çalıştır
+
+## Notlar
+
+* UI componentleri mümkün olduğunca **modüler** ve **yeniden kullanılabilir** tutulur.
+* Animasyonlar için Framer Motion kullanımı önerilir; ayrıca saf CSS animasyonları da uygulanabilir.
+
