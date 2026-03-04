@@ -1,14 +1,14 @@
 ## React Component App
 
-Bu proje React + Vite ile kurulmuş bir **tasarım/animasyon playground** uygulamasıdır.  
-Hedef: tekrar kullanılabilir **UI component kütüphanesi** (Button, Card, TextInput, Select, Checkbox vb.) ve bu componentlerle **dinamik ekranlar** (örn. Login) geliştirmek.
+Bu proje React + Vite ile kurulmuş bir **UI component playground** uygulamasıdır.
+Tekrar kullanılabilir **UI component kütüphanesi** (Button, Card, TextInput, Select, Checkbox) ve bu componentlerle **dinamik ekranlar** (LoginScreen) içerir.
 
 ## Kurulum
 
 ```bash
 npm install
 npm run dev
-````
+```
 
 Build almak için:
 
@@ -19,29 +19,11 @@ npm run preview
 
 ## Kullanılanlar
 
-* **React + Vite** (HMR / hızlı geliştirme)
-* **Bootstrap** (hızlı layout ve grid)
-* (Opsiyonel) **Framer Motion** (animasyonlar)
+* **React 19 + Vite 7** (HMR / hızlı geliştirme)
+* **Bootstrap 5** (layout ve grid)
+* **CSS Modules** (component bazlı stil)
 
-Bootstrap ekli değilse:
-
-```bash
-npm i bootstrap
-```
-
-`src/main.jsx` içinde:
-
-```js
-import "bootstrap/dist/css/bootstrap.min.css";
-```
-
-Framer Motion (opsiyonel):
-
-```bash
-npm i framer-motion
-```
-
-## Proje Yapısı (öneri)
+## Proje Yapısı
 
 ```
 src/
@@ -58,7 +40,7 @@ src/
         LoginForm.jsx
   screens/            # sayfa/screen componentleri
     LoginScreen.jsx
-  index.css
+  App.css
   main.jsx
   App.jsx
 ```
@@ -73,7 +55,7 @@ import { Button, Card, TextInput, Select, Checkbox } from "./components/ui";
 
 ## Dinamik Form Mantığı (LoginForm)
 
-`LoginForm` componenti `fields` array’inden inputları dinamik üretir:
+`LoginForm` componenti `fields` array'inden inputları dinamik üretir:
 
 * `type: "text" | "email" | "password" | "checkbox" | "select"`
 * `required`, `minLength`, `pattern`, `patternMessage`
@@ -102,10 +84,10 @@ const fields = [
 
 * `npm run dev` → geliştirme
 * `npm run build` → production build
-* `npm run preview` → build’i localde çalıştır
+* `npm run preview` → build'i localde çalıştır
+* `npm run lint` → ESLint ile kod kontrolü
 
 ## Notlar
 
 * UI componentleri mümkün olduğunca **modüler** ve **yeniden kullanılabilir** tutulur.
-* Animasyonlar için Framer Motion kullanımı önerilir; ayrıca saf CSS animasyonları da uygulanabilir.
-
+* Her component kendi **CSS Module** dosyasına sahiptir (scoped stil).
